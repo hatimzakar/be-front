@@ -1,0 +1,101 @@
+ 
+ <div class="row">
+
+    <div class="col-md-12 justify-content">
+    
+        <label><h3>Ajouter Une Personne</h3></label><br/>
+         
+       <!-- Button trigger modal -->
+           
+         <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Ajouter </button>
+       
+    
+    </div>
+ </div>
+ 
+ 
+ <div class="row">
+ 
+    <div class="card">
+        <div class="card-body">
+        
+            <table class="table table-stripped">
+
+                <thead>
+                        <th>Id</th>
+                        <th>FirstName</th>
+                        <th>lastName</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        
+
+                </thead>
+
+                <tbody>
+                        <tr *ngFor="let person of persons">
+                             <td>{{person.id}}</td>
+                             <td>{{person.firstname}}</td>
+                             <td>{{person.lastname}}</td>
+                             <td>{{person.email}}</td>
+                             <td>{{person.phone}}</td>
+                             <td><button class="btn  btn-warning" (click)="update(person.id,content)">Update</button></td>
+                             <td><button class="btn btn-danger" (click)="delete(person.id)" >Delete</button></td>
+                        </tr>
+
+                </tbody>
+
+        </table>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal code -->
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ajouter Personne</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <span aria-hidden="true">&times;</span>
+     
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label  for="firstLabel" class="form-label">First Name</label>
+            <input id="firstLabel"type="text" class="form-control"[(ngModel)]="person.firstname" name="firstname">
+        </div>
+
+        <div class="form-group">
+            <label  for="firstLabel" class="form-label">lastName</label>
+            <input id="lastLabel"type="text" class="form-control"[(ngModel)]="person.lastname" name="lastname">
+        </div>
+
+
+        <div class="form-group">
+            <label  for="firstLabel" class="form-label">Email</label>
+            <input id="lastLabel"type="text" class="form-control"[(ngModel)]="person.email" name="emailname">
+          </div>
+          <div class="form-group">
+            <label  for="firstLabel" class="form-label">Phone</label>
+            <input id="lastLabel"type="text" class="form-control"[(ngModel)]="person.phone"name="phonename" >
+          </div>
+          <div class="modal-footer">
+      
+         
+          <button type="submit" class="btn btn-outline-primary" (click)="modal.close('Save click')">Valider</button>
+          <button type="button" class=" btn btn-outline-danger" (click)="modal.close('Save click')">Annuler</button>
+        </div> 
+        </form>
+    </div>
+   
+    
+  </ng-template>
